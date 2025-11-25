@@ -1,30 +1,40 @@
 # 🎬 VideoGrabber
 
-A powerful, professional-grade cross-platform video downloader built with Electron and yt-dlp. Download videos from 1000+ websites including TikTok, Instagram, YouTube, Facebook, Reddit, Twitter, and more!
+> A powerful, cross-platform video downloader with GPU acceleration, download queue, and support for 1000+ websites.
 
+[![macOS](https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white)](https://github.com/martin-sack/Video-Grabber/releases)
+[![Windows](https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white)](https://github.com/martin-sack/Video-Grabber/releases)
+[![Linux](https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black)](https://github.com/martin-sack/Video-Grabber/releases)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/martin-sack/Video-Grabber/releases)
-[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/martin-sack/Video-Grabber)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Downloads](https://img.shields.io/github/downloads/martin-sack/Video-Grabber/total.svg)](https://github.com/martin-sack/Video-Grabber/releases)
-[![Stars](https://img.shields.io/github/stars/martin-sack/Video-Grabber.svg)](https://github.com/martin-sack/Video-Grabber/stargazers)
+[![Stars](https://img.shields.io/github/stars/martin-sack/Video-Grabber.svg?style=social)](https://github.com/martin-sack/Video-Grabber/stargazers)
 
-## 🌟 Why VideoGrabber?
+![Demo](screenshots/demo.gif)
+*Download videos from 1000+ sites with GPU acceleration and batch queue*
 
+---
+
+## � Why V ideoGrabber?
+
+- **🌐 1000+ Sites** - Powered by yt-dlp: TikTok, Instagram, YouTube, Facebook, Reddit, Twitter, Vimeo, and more
 - **🎯 No Watermarks** - Download TikTok videos without watermarks
-- **⚡ Queue + GPU Acceleration** - Batch downloads with hardware-accelerated processing (2-6x faster)
-- **📦 Bundled Binaries** - Works offline, no external dependencies needed
-- **🎨 Beginner-Friendly** - Beautiful UI on top of powerful yt-dlp technology
-- **🆓 100% Free** - Open source, no ads, no premium tiers, no limits
+- **⚡ Download Queue** - Batch download multiple videos with pause/resume support
+- **🎮 GPU Acceleration** - Hardware-accelerated processing (2-6x faster on M1/M2/M3, NVIDIA, AMD)
+- **📦 Zero Dependencies** - Bundled binaries work offline, no Python or external tools needed
+- **🎨 Beautiful UI** - Modern Electron desktop app with intuitive controls
+- **🆓 100% Free** - Open source (MIT), no ads, no premium tiers, no limits
+
+---
 
 ## ✨ Features
 
 ### Core Features
-- 🌐 **Universal Support** - Download from 1000+ websites
+- � **UnUiversal Support** - Download from 1000+ websites
 - 🎯 **Smart Quality Detection** - Automatically selects best quality (1080p, 4K, etc.)
 - 🎵 **Audio Extraction** - Download audio-only as MP3
-- 📋 **Clipboard Integration** - Auto-detect URLs from clipboard
-- 📊 **Real-time Progress** - Live download progress with speed and ETA
-- 🎬 **Video Preview** - See thumbnail and metadata before downloading
+- � **Clilpboard Integration** - Auto-detect URLs from clipboard
+- � ***Real-time Progress** - Live download progress with speed and ETA
+- � ***Video Preview** - See thumbnail and metadata before downloading
 - 📁 **Custom Save Location** - Choose where to save your downloads
 
 ### Advanced Features
@@ -37,24 +47,32 @@ A powerful, professional-grade cross-platform video downloader built with Electr
 - 🎨 **Modern UI** - Beautiful gradient interface with smooth animations
 
 ### Supported Platforms
-- ✅ TikTok (videos, no watermark)
-- ✅ Instagram (posts, reels, stories, IGTV)
-- ✅ YouTube (videos, shorts, live streams, playlists)
-- ✅ Facebook (videos, watch)
-- ✅ Twitter/X (videos, GIFs)
-- ✅ Reddit (videos, v.redd.it)
-- ✅ Vimeo
-- ✅ Dailymotion
-- ✅ Twitch (VODs, clips)
-- ✅ And 1000+ more sites!
+TikTok • Instagram • YouTube • Facebook • Twitter/X • Reddit • Vimeo • Dailymotion • Twitch • And 1000+ more!
+
+---
+
+## 📸 Screenshots
+
+### Main Interface
+![Main Interface](screenshots/main.png)
+*Beautiful gradient UI with video preview and real-time progress*
+
+### Download Queue
+![Download Queue](screenshots/queue.png)
+*Manage multiple downloads with individual controls*
+
+### History Management
+![History](screenshots/history.png)
+*Track all downloads with clickable items and file management*
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js 16+ ([Download](https://nodejs.org/))
-- npm (comes with Node.js)
 
-### Installation
+### Installation & Run
 
 ```bash
 # Clone the repository
@@ -73,20 +91,35 @@ setup-binaries.bat   # Windows
 npm start
 ```
 
-### Build Desktop App
+---
+
+## 📦 Download Pre-built App
+
+**Don't want to build from source?** Download the latest release:
+
+👉 **[Download for macOS / Windows / Linux](https://github.com/martin-sack/Video-Grabber/releases)**
+
+- **macOS**: Download `.dmg`, drag to Applications
+- **Windows**: Download `.exe` installer or portable version
+- **Linux**: Download `.AppImage` or `.deb`
+
+---
+
+## 🛠️ Build from Source
 
 ```bash
-# Build for macOS
-npm run build:mac
+# Build for your platform
+npm run build:mac    # macOS (creates .dmg)
+npm run build:win    # Windows (creates .exe)
+npm run build:linux  # Linux (creates .AppImage)
 
-# Build for Windows
-npm run build:win
-
-# Build for both
+# Or build for all platforms
 npm run build
 ```
 
-The built app will be in the `dist/` folder.
+Built apps will be in the `dist/` folder.
+
+---
 
 ## 📖 Usage
 
@@ -109,20 +142,23 @@ The built app will be in the `dist/` folder.
 3. Paste URL and download
 4. Enjoy 2-6x faster processing!
 
+---
+
 ## 🎮 GPU Acceleration
 
 GPU acceleration speeds up video **processing** (not downloading) by 2-6x:
 
-- **macOS**: Uses VideoToolbox (M1/M2/M3 or Intel)
-- **Windows (NVIDIA)**: Uses NVENC
-- **Windows (AMD)**: Uses AMF
+| Platform | Technology | Performance |
+|----------|------------|-------------|
+| **macOS** | VideoToolbox (M1/M2/M3) | 2-6x faster |
+| **Windows (NVIDIA)** | NVENC | 2-5x faster |
+| **Windows (AMD)** | AMF | 2-4x faster |
 
-**Performance Example:**
-- 4K video processing: 3 minutes → 30 seconds
-- CPU usage: 100% → 20-30%
-- Overall download: 31% faster
+**Example:** 4K video processing: 3 minutes → 30 seconds
 
 See [GPU_ACCELERATION_EXPLAINED.md](GPU_ACCELERATION_EXPLAINED.md) for details.
+
+---
 
 ## 📂 Project Structure
 
@@ -135,71 +171,11 @@ videograbber/
 ├── getYtDlpExecutable.js   # Binary path resolver
 ├── index.html              # UI markup
 ├── styles.css              # Modern styling
-├── resources/
-│   └── bin/
-│       ├── yt-dlp-mac      # macOS binary
-│       ├── yt-dlp-win.exe  # Windows binary
-│       └── yt-dlp-linux    # Linux binary
+├── resources/bin/          # Bundled yt-dlp binaries
 └── dist/                   # Built applications
 ```
 
-## 🔧 Configuration
-
-### Download Location
-Default: `~/VideoGrabberDownloads`
-
-Change in Settings (⚙️ button) or modify in code.
-
-### Format Options
-- **MP4 (Best Quality)** - Highest available quality
-- **4K (2160p+)** - Ultra HD
-- **1080p** - Full HD
-- **720p** - HD
-- **MP3 (Audio Only)** - Extract audio
-
-### GPU Acceleration
-Enabled by default. Disable if you experience issues or only download MP3s.
-
-## 🎨 Screenshots
-
-### Main Interface
-![Main Interface](https://via.placeholder.com/800x500/667eea/ffffff?text=Main+Interface+-+Coming+Soon)
-*Beautiful gradient UI with video preview and real-time progress*
-
-### Download Queue
-![Download Queue](https://via.placeholder.com/800x500/764ba2/ffffff?text=Download+Queue+-+Coming+Soon)
-*Manage multiple downloads with individual controls*
-
-### History Management
-![History](https://via.placeholder.com/800x500/667eea/ffffff?text=History+-+Coming+Soon)
-*Track all downloads with clickable items and file management*
-
-> **Note**: Screenshots will be added in the next update. The app is fully functional!
-
-## 🛠️ Development
-
-### Run in Development Mode
-```bash
-npm start
-```
-
-### Build for Production
-```bash
-# macOS
-npm run build:mac
-
-# Windows
-npm run build:win
-
-# Linux
-npm run build:linux
-```
-
-### Update yt-dlp
-```bash
-./setup-binaries.sh
-npm run build
-```
+---
 
 ## 📚 Documentation
 
@@ -208,51 +184,60 @@ npm run build
 - [INSTALL.md](INSTALL.md) - Detailed installation guide
 - [ARCHITECTURE.md](ARCHITECTURE.md) - Technical architecture
 - [FEATURES.md](FEATURES.md) - Complete feature list
-- [PROFESSIONAL_FEATURES.md](PROFESSIONAL_FEATURES.md) - Advanced features guide
 - [GPU_ACCELERATION_EXPLAINED.md](GPU_ACCELERATION_EXPLAINED.md) - GPU acceleration details
 - [COMMANDS.md](COMMANDS.md) - Command reference
-- [COMPLETE_GUIDE.md](COMPLETE_GUIDE.md) - Comprehensive guide
+
+---
 
 ## 🆘 Troubleshooting
 
 ### "yt-dlp not found" Error
+The app includes bundled binaries. If you still see this error:
 ```bash
-# Install yt-dlp
-brew install yt-dlp  # macOS
-pip install yt-dlp   # Windows/Linux
-
-# Or download binaries
-./setup-binaries.sh
+./setup-binaries.sh  # Re-download binaries
+npm run build        # Rebuild the app
 ```
 
 ### Download Fails
 - Check internet connection
-- Verify URL is valid
-- Update yt-dlp: `pip install -U yt-dlp`
-- Check console for errors
+- Verify URL is valid and accessible
+- Some sites may have restrictions or require authentication
 
 ### App Won't Open (macOS)
-- Right-click app → Open
+- Right-click app → Open (first time only)
 - Or: System Settings → Privacy & Security → Open Anyway
 
 ### GPU Not Working
-- Check if GPU is supported
-- Update GPU drivers
+- Ensure GPU drivers are updated
+- Check console for GPU codec detection
 - Disable GPU acceleration if issues persist
+
+---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+---
 
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## ⚠️ Legal & Ethical Use
+
+**Important:** VideoGrabber is intended for **personal, offline use only**. Users must:
+
+- ✅ Respect copyright laws and intellectual property rights
+- ✅ Comply with terms of service of video platforms
+- ✅ Only download content you have permission to access
+- ✅ Use downloaded content for personal, non-commercial purposes
+
+**The developers are not responsible for any misuse of this software.** Please use responsibly and ethically.
+
+---
 
 ## 🙏 Credits
 
@@ -260,23 +245,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Powered by [yt-dlp](https://github.com/yt-dlp/yt-dlp)
 - Inspired by professional download managers
 
-## ⚠️ Disclaimer
-
-This tool is for personal use only. Please respect copyright laws and terms of service of the platforms you download from. The developers are not responsible for any misuse of this software.
-
-## 🌟 Star History
-
-If you find this project useful, please consider giving it a star! ⭐
+---
 
 ## 📞 Support
 
 - 🐛 [Report a Bug](https://github.com/martin-sack/Video-Grabber/issues)
-- 💡 [Request a Feature](https://github.com/martin-sack/Video-Grabber/issues)
-- 📖 [Documentation](https://github.com/martin-sack/Video-Grabber/wiki)
+- � [LRequest a Feature](https://github.com/martin-sack/Video-Grabber/issues)
+- ⭐ [Star this Project](https://github.com/martin-sack/Video-Grabber)
 
-## 🔄 Updates
+---
 
-### Version 1.0.0 (Current)
+## 🔄 Version History
+
+### v1.0.0 (Current)
 - ✅ Download queue system
 - ✅ GPU acceleration
 - ✅ Format selection (MP4, 4K, 1080p, 720p, MP3)
@@ -286,8 +267,12 @@ If you find this project useful, please consider giving it a star! ⭐
 - ✅ Modern UI
 - ✅ Cross-platform support
 
+See [CHANGELOG.md](CHANGELOG.md) for full history.
+
 ---
 
 **Made with ❤️ by the VideoGrabber Team**
 
 **Download videos from anywhere, anytime!** 🚀
+
+[⬆ Back to top](#-videograbber)

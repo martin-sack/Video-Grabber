@@ -1,0 +1,28 @@
+# Git attributes for VideoGrabber
+
+# Images
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.icns binary
+
+# Archives
+*.zip binary
+*.dmg binary
+*.exe binary
+*.AppImage binary
+*.deb binary
+
+# Documents
+*.pdf binary
+
+# Line endings
+*.js text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf
