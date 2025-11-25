@@ -24,11 +24,16 @@ export default function Home() {
       .then(data => {
         const links: DownloadLinks = {}
         data.assets?.forEach((asset: any) => {
-          if (asset.name.endsWith('.exe')) {
+          // Windows: Look for Setup.exe (installer)
+          if (asset.name.includes('Setup') && asset.name.endsWith('.exe')) {
             links.windows = asset.browser_download_url
-          } else if (asset.name.endsWith('.dmg')) {
+          } 
+          // macOS: Look for .dmg
+          else if (asset.name.endsWith('.dmg')) {
             links.mac = asset.browser_download_url
-          } else if (asset.name.endsWith('.AppImage')) {
+          } 
+          // Linux: Look for .AppImage
+          else if (asset.name.endsWith('.AppImage')) {
             links.linux = asset.browser_download_url
           }
         })
