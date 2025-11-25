@@ -199,10 +199,11 @@ async function startDownload() {
   }
 }
 
-function addToHistory(title, status, downloadPath, isAudio = false) {
+function addToHistory(title, status, downloadPath, isAudio = false, url = '') {
   const item = {
     id: Date.now().toString(),
     title: title,
+    url: url, // Store URL for retry
     status: status,
     timestamp: new Date().toLocaleString(),
     path: downloadPath,
@@ -235,6 +236,9 @@ function renderHistory() {
         ${item.status === 'success' ? `
           <button class="history-btn show-btn" data-index="${index}" title="Show in folder">📁</button>
           <button class="history-btn delete-btn" data-index="${index}" title="Delete file">🗑️</button>
+        ` : ''}
+        ${item.status === 'failed' || item.status === 'cancelled' ? `
+          <button class="history-btn retry-btn" data-index="${index}" title="Retry download">🔄</button>
         ` : ''}
         <button class="history-btn remove-btn" data-index="${index}" title="Remove from history">✕</button>
       </div>
@@ -299,6 +303,37 @@ function renderHistory() {
       }
     });
   });
+  
+  document.querySelectorAll('.retry-btn').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      const index = parseInt(btn.dataset.index);
+      const historyItem = downloadHistory[index];
+      
+      if (confirm(`Retry downloading "${historyItem.title}"?`)) {
+        // Build arguments for retry
+        const args = buildYtDlpArgs(historyItem.url || historyItem.title, historyItem.path);
+        
+        // Add to queue
+        try {
+          await window.electronAPI.queueAdd({
+            url: historyItem.url || historyItem.title,
+            options: { args }
+          });
+          
+          // Update status to queued
+          historyItem.status = 'queued';
+          window.electronAPI.saveHistory(downloadHistory);
+          renderHistory();
+          
+          alert('Added to download queue!');
+        } catch (error) {
+          console.error('Failed to retry:', error);
+          alert('Failed to add to queue: ' + error.message);
+        }
+      }
+    });
+  });
 }
 
 function formatDuration(seconds) {
@@ -349,22 +384,22 @@ window.electronAPI.onQueueItemStarted((item) => {
 });
 
 window.electronAPI.onQueueItemCompleted((item) => {
-  addToHistory(item.url, 'success', currentDownloadPath, formatSelect.value === 'mp3');
+  addToHistory(item.url, 'success', currentDownloadPath, formatSelect.value === 'mp3', item.url);
   renderQueue();
 });
 
 window.electronAPI.onQueueItemFailed((item) => {
   console.error('Download failed:', item);
-  addToHistory(item.url, 'failed', currentDownloadPath, formatSelect.value === 'mp3');
+  addToHistory(item.url, 'failed', currentDownloadPath, formatSelect.value === 'mp3', item.url);
   renderQueue();
   
   // Show error to user
   const errorMsg = item.error || 'Unknown error';
-  alert(`Download failed!\n\nURL: ${item.url}\n\nError: ${errorMsg}\n\nCheck the console for more details.`);
+  alert(`Download failed!\n\nURL: ${item.url}\n\nError: ${errorMsg}\n\nUse the retry button (🔄) to try again.`);
 });
 
 window.electronAPI.onQueueItemCancelled((item) => {
-  addToHistory(item.url, 'cancelled', currentDownloadPath, formatSelect.value === 'mp3');
+  addToHistory(item.url, 'cancelled', currentDownloadPath, formatSelect.value === 'mp3', item.url);
   renderQueue();
 });
 

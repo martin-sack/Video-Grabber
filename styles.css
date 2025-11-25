@@ -544,6 +544,15 @@ body {
   background: rgba(255, 0, 0, 0.3);
 }
 
+.retry-btn {
+  background: rgba(0, 150, 255, 0.2);
+}
+
+.retry-btn:hover {
+  background: rgba(0, 150, 255, 0.4);
+  transform: rotate(180deg);
+}
+
 /* Modal */
 .modal {
   display: none;
