@@ -102,14 +102,28 @@ jobs:
       - name: Flatten artifacts
         run: |
           mkdir -p release-files
-          find artifacts -type f \( -name "*.dmg" -o -name "*.zip" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" \) -exec cp {} release-files/ \;
-          ls -la release-files/
+          # Copy all installer files
+          find artifacts -type f \( -name "*.dmg" -o -name "*.exe" -o -name "*.AppImage" \) -exec cp -v {} release-files/ \;
+          echo ""
+          echo "=== Release files ==="
+          ls -lah release-files/ || echo "No files found"
+          echo ""
+          FILE_COUNT=$(find release-files -type f | wc -l)
+          echo "Total files: $FILE_COUNT"
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "ERROR: No release files found!"
+            echo "Checking what we have in artifacts:"
+            find artifacts -type f
+            exit 1
+          fi
         shell: bash
       
       - name: Create Release
-        uses: softprops/action-gh-release@v1
+        if: success()
+        uses: softprops/action-gh-release@v2
         with:
           files: release-files/*
+          fail_on_unmatched_files: true
           draft: false
           prerelease: false
           generate_release_notes: true
