@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { Download, Zap, Shield, Video, List, Cpu, Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { track } from '@vercel/analytics'
 
 const GITHUB_REPO = 'https://github.com/martin-sack/Video-Grabber'
 const RELEASES_URL = `${GITHUB_REPO}/releases/latest`
@@ -106,6 +107,7 @@ export default function Home() {
               <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
               <a
                 href={downloadLinks.windows || RELEASES_URL}
+                onClick={() => track('download', { platform: 'windows' })}
                 className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
               >
                 {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
@@ -114,6 +116,7 @@ export default function Home() {
               
               <a
                 href={downloadLinks.mac || RELEASES_URL}
+                onClick={() => track('download', { platform: 'macos' })}
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
                 {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
@@ -122,6 +125,7 @@ export default function Home() {
               
               <a
                 href={downloadLinks.linux || RELEASES_URL}
+                onClick={() => track('download', { platform: 'linux' })}
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
                 {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
