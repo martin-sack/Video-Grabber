@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VideoGrabber</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="header">
+      <h1>🎬 VideoGrabber</h1>
+      <button class="settings-btn" id="settingsBtn">⚙️</button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- URL Input Section -->
+      <div class="input-section">
+        <div class="input-wrapper">
+          <input 
+            type="text" 
+            id="urlInput" 
+            placeholder="Paste video URL here (TikTok, Instagram, YouTube, etc.)"
+            class="url-input"
+          >
+          <button class="paste-btn" id="pasteBtn" title="Paste from clipboard">📋</button>
+        </div>
+        
+        <div class="options-row">
+          <div class="format-selector">
+            <label for="formatSelect">Format:</label>
+            <select id="formatSelect" class="format-select">
+              <option value="mp4">MP4 (Best Quality)</option>
+              <option value="4k">4K (2160p+)</option>
+              <option value="1080p">1080p</option>
+              <option value="720p">720p</option>
+              <option value="mp3">MP3 (Audio Only)</option>
+            </select>
+          </div>
+          <label class="checkbox-label">
+            <input type="checkbox" id="playlistCheck">
+            <span>Download Playlist</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="gpuAccelCheck" checked>
+            <span>GPU Acceleration</span>
+          </label>
+        </div>
+
+        <button class="download-btn" id="downloadBtn">
+          <span class="btn-text">Download</span>
+        </button>
+      </div>
+
+      <!-- Video Preview -->
+      <div class="video-preview" id="videoPreview" style="display: none;">
+        <img id="previewThumb" src="" alt="Video thumbnail">
+        <div class="preview-info">
+          <h3 id="previewTitle"></h3>
+          <p id="previewMeta"></p>
+        </div>
+      </div>
+
+      <!-- Current Download -->
+      <div class="current-download" id="currentDownload" style="display: none;">
+        <div class="download-header">
+          <span class="download-title" id="currentTitle">Downloading...</span>
+          <div class="download-controls">
+            <button class="pause-btn" id="pauseResumeBtn" title="Pause">⏸</button>
+            <button class="cancel-btn" id="cancelBtn">✕</button>
+          </div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <div class="progress-info">
+            <span id="progressPercent">0%</span>
+            <span id="progressSpeed"></span>
+            <span id="progressEta"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Download Queue -->
+      <div class="queue-section">
+        <div class="queue-header">
+          <h2>Download Queue</h2>
+          <button class="clear-queue-btn" id="clearQueueBtn">Clear Queue</button>
+        </div>
+        <div class="queue-list" id="queueList">
+          <p class="empty-state">No items in queue</p>
+        </div>
+      </div>
+
+      <!-- Download History -->
+      <div class="history-section">
+        <div class="history-header">
+          <h2>Download History</h2>
+          <button class="clear-history-btn" id="clearHistoryBtn">Clear All</button>
+        </div>
+        <div class="history-list" id="historyList">
+          <p class="empty-state">No downloads yet</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Settings</h2>
+          <button class="close-btn" id="closeModal">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="setting-item">
+            <label>Download Location</label>
+            <div class="path-selector">
+              <input type="text" id="downloadPath" readonly>
+              <button id="selectPathBtn">Browse</button>
+            </div>
+          </div>
+          <div class="setting-item">
+            <p class="info-text">
+              Supported platforms: TikTok, Instagram, Facebook, YouTube, Reddit, Twitter, Vimeo, and more.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

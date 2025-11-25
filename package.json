@@ -1,0 +1,55 @@
+{
+  "name": "videograbber",
+  "version": "1.0.0",
+  "description": "Cross-platform video downloader using yt-dlp",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "setup": "node -e \"console.log('Run ./setup-binaries.sh (Mac/Linux) or setup-binaries.bat (Windows) to download yt-dlp binaries')\"",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.videograbber.app",
+    "productName": "VideoGrabber",
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer.js",
+      "getYtDlpExecutable.js",
+      "queue.js",
+      "index.html",
+      "styles.css"
+    ],
+    "extraResources": [
+      {
+        "from": "resources",
+        "to": ".",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.utilities",
+      "target": ["dmg", "zip"],
+      "icon": "icon.icns"
+    },
+    "win": {
+      "target": ["nsis", "portable"],
+      "icon": "icon.ico"
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "icon": "icon.png",
+      "category": "Utility"
+    }
+  },
+  "keywords": ["video", "downloader", "yt-dlp", "electron"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  }
+}
