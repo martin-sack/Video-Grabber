@@ -5,16 +5,17 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder --mac --win --linux -c.publish=never",
-    "build:mac": "electron-builder --mac -c.publish=never",
-    "build:win": "electron-builder --win -c.publish=never",
-    "build:linux": "electron-builder --linux -c.publish=never",
+    "build": "electron-builder --mac --win --linux",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
     "setup": "node -e \"console.log('Run ./setup-binaries.sh (Mac/Linux) or setup-binaries.bat (Windows) to download yt-dlp binaries')\"",
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "appId": "com.martinsack.videograbber",
     "productName": "VideoGrabber",
+    "publish": null,
     "files": [
       "main.js",
       "preload.js",
