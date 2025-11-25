@@ -5,9 +5,10 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-builder",
+    "build": "electron-builder --mac --win --linux",
     "build:mac": "electron-builder --mac",
     "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
     "setup": "node -e \"console.log('Run ./setup-binaries.sh (Mac/Linux) or setup-binaries.bat (Windows) to download yt-dlp binaries')\"",
     "postinstall": "electron-builder install-app-deps"
   },
