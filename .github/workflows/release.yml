@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*' # Triggers on tags like v1.0.0
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build on ${{ matrix.os }}
@@ -67,17 +70,16 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
+      - name: List dist contents
+        run: ls -la dist/ || echo "No dist folder"
+        shell: bash
+      
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.os }}-build
-          path: |
-            dist/*.dmg
-            dist/*.zip
-            dist/*.exe
-            dist/*.AppImage
-            dist/*.deb
-          if-no-files-found: ignore
+          path: dist/
+          if-no-files-found: warn
   
   release:
     name: Create Release
@@ -93,17 +95,37 @@ jobs:
       - name: Display structure
         run: ls -R artifacts
       
+      - name: Flatten artifacts
+        run: |
+          mkdir -p release-files
+          find artifacts -type f \( -name "*.dmg" -o -name "*.zip" -o -name "*.exe" -o -name "*.AppImage" -o -name "*.deb" \) -exec cp {} release-files/ \;
+          ls -la release-files/
+        shell: bash
+      
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: |
-            artifacts/**/*.dmg
-            artifacts/**/*.zip
-            artifacts/**/*.exe
-            artifacts/**/*.AppImage
-            artifacts/**/*.deb
+          files: release-files/*
           draft: false
           prerelease: false
           generate_release_notes: true
+          body: |
+            ## 🎬 VideoGrabber ${{ github.ref_name }}
+            
+            Download videos from 1000+ websites with GPU acceleration!
+            
+            ### 📥 Downloads
+            - **macOS**: Download the `.dmg` file
+            - **Windows**: Download the `.exe` file
+            - **Linux**: Download the `.AppImage` or `.deb` file
+            
+            ### ✨ Features
+            - GPU acceleration (2-6x faster)
+            - Download queue with pause/resume
+            - Format selection (4K, 1080p, 720p, MP3)
+            - 1000+ supported websites
+            - Beautiful modern UI
+            
+            See [README](https://github.com/martin-sack/Video-Grabber#readme) for full documentation.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -27,15 +27,15 @@ export default function Home() {
             variants={fadeIn}
           >
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl mb-6">
-              The Ultimate Video Downloader
+              The Universal
               <br />
-              <span className="gradient-text">for Creators</span>
+              <span className="gradient-text">Video Downloader</span>
             </h1>
             
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-300">
-              Download 4K video, audio, and playlists from YouTube, TikTok, and Instagram in one click.
+              Save video and audio from anywhere. YouTube, Instagram, TikTok, and 1000+ sites.
               <br />
-              Free, open-source, and blazing fast with GPU acceleration.
+              No ads, no tracking, completely free.
             </p>
 
             {/* CTA Buttons */}
@@ -65,16 +65,18 @@ export default function Home() {
               </a>
             </div>
 
-            {/* Screenshot Placeholder */}
+            {/* Screenshot */}
             <motion.div
               className="mt-16 glass rounded-2xl p-2"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 0.6 }}
             >
-              <div className="aspect-video rounded-xl bg-gradient-to-br from-purple-900/50 to-violet-900/50 flex items-center justify-center">
-                <p className="text-gray-400">App Screenshot</p>
-              </div>
+              <img 
+                src="/screenshot.png" 
+                alt="VideoGrabber Interface" 
+                className="rounded-xl shadow-2xl w-full"
+              />
             </motion.div>
           </motion.div>
         </div>
@@ -101,18 +103,18 @@ export default function Home() {
             {[
               {
                 icon: Video,
-                title: '4K Support',
-                description: 'Download crystal clear video up to 2160p with the best quality available.'
-              },
-              {
-                icon: List,
-                title: 'Batch Processing',
-                description: 'Grab entire playlists or multiple links at once with our download queue.'
+                title: 'Offline Viewing',
+                description: 'Save videos for offline access. Perfect for travel, commutes, or areas with poor connectivity.'
               },
               {
                 icon: Shield,
-                title: 'Privacy First',
-                description: 'Runs locally on your machine. No tracking, no data collection, ever.'
+                title: 'Archiving',
+                description: 'Preserve important content before it disappears. Keep your favorite videos forever.'
+              },
+              {
+                icon: List,
+                title: 'Education & Research',
+                description: 'Download educational content, lectures, and tutorials for study and reference.'
               },
               {
                 icon: Zap,
