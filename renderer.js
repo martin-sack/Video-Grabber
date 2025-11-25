@@ -98,31 +98,34 @@ selectPathBtn.addEventListener('click', async () => {
   }
 });
 
-cancelBtn.addEventListener('click', () => {
-  if (currentDownloadId) {
-    window.electronAPI.cancelDownload(currentDownloadId);
-    currentDownload.style.display = 'none';
-    downloadBtn.disabled = false;
+cancelBtn.addEventListener('click', async () => {
+  // Get current download from queue
+  const queueData = await window.electronAPI.queueGet();
+  if (queueData.current) {
+    await window.electronAPI.queueCancel(queueData.current.id);
     isPaused = false;
-    addToHistory('Download cancelled', 'cancelled');
+    pauseResumeBtn.textContent = '⏸';
+    pauseResumeBtn.title = 'Pause';
   }
 });
 
 // Add pause/resume button handler
 const pauseResumeBtn = document.getElementById('pauseResumeBtn');
 pauseResumeBtn.addEventListener('click', async () => {
-  if (!currentDownloadId) return;
-  
   if (isPaused) {
-    await window.electronAPI.resumeDownload(currentDownloadId);
-    isPaused = false;
-    pauseResumeBtn.textContent = '⏸';
-    pauseResumeBtn.title = 'Pause';
+    const result = await window.electronAPI.queueResume();
+    if (result) {
+      isPaused = false;
+      pauseResumeBtn.textContent = '⏸';
+      pauseResumeBtn.title = 'Pause';
+    }
   } else {
-    await window.electronAPI.pauseDownload(currentDownloadId);
-    isPaused = true;
-    pauseResumeBtn.textContent = '▶';
-    pauseResumeBtn.title = 'Resume';
+    const result = await window.electronAPI.queuePause();
+    if (result) {
+      isPaused = true;
+      pauseResumeBtn.textContent = '▶';
+      pauseResumeBtn.title = 'Resume';
+    }
   }
 });
 
@@ -368,7 +371,23 @@ window.electronAPI.onQueueItemCancelled((item) => {
 window.electronAPI.onQueueDone(() => {
   currentDownload.style.display = 'none';
   downloadBtn.disabled = false;
+  isPaused = false;
+  pauseResumeBtn.textContent = '⏸';
+  pauseResumeBtn.title = 'Pause';
   alert('All downloads completed!');
+});
+
+// Listen for pause/resume events
+window.electronAPI.onQueueItemPaused?.(() => {
+  isPaused = true;
+  pauseResumeBtn.textContent = '▶';
+  pauseResumeBtn.title = 'Resume';
+});
+
+window.electronAPI.onQueueItemResumed?.(() => {
+  isPaused = false;
+  pauseResumeBtn.textContent = '⏸';
+  pauseResumeBtn.title = 'Pause';
 });
 
 // Render queue

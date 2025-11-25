@@ -48,5 +48,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
   },
   onQueueDone: (callback) => {
     ipcRenderer.on('queue-done', () => callback());
+  },
+  onQueueItemPaused: (callback) => {
+    ipcRenderer.on('queue-item-paused', (event, data) => callback(data));
+  },
+  onQueueItemResumed: (callback) => {
+    ipcRenderer.on('queue-item-resumed', (event, data) => callback(data));
   }
 });
