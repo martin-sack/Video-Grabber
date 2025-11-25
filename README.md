@@ -2,22 +2,32 @@
 
 A powerful, professional-grade cross-platform video downloader built with Electron and yt-dlp. Download videos from 1000+ websites including TikTok, Instagram, YouTube, Facebook, Reddit, Twitter, and more!
 
-![VideoGrabber](https://img.shields.io/badge/version-1.0.0-blue.svg)
-![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
+[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/martin-sack/Video-Grabber/releases)
+[![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/martin-sack/Video-Grabber)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/martin-sack/Video-Grabber/total.svg)](https://github.com/martin-sack/Video-Grabber/releases)
+[![Stars](https://img.shields.io/github/stars/martin-sack/Video-Grabber.svg)](https://github.com/martin-sack/Video-Grabber/stargazers)
+
+## 🌟 Why VideoGrabber?
+
+- **🎯 No Watermarks** - Download TikTok videos without watermarks
+- **⚡ Queue + GPU Acceleration** - Batch downloads with hardware-accelerated processing (2-6x faster)
+- **📦 Bundled Binaries** - Works offline, no external dependencies needed
+- **🎨 Beginner-Friendly** - Beautiful UI on top of powerful yt-dlp technology
+- **🆓 100% Free** - Open source, no ads, no premium tiers, no limits
 
 ## ✨ Features
 
 ### Core Features
 - 🌐 **Universal Support** - Download from 1000+ websites
-- � **MSmart Quality Detection** - Automatically selects best quality (1080p, 4K, etc.)
-- � **Aiudio Extraction** - Download audio-only as MP3
-- � **Culipboard Integration** - Auto-detect URLs from clipboard
-- � **PReal-time Progress** - Live download progress with speed and ETA
+- 🎯 **Smart Quality Detection** - Automatically selects best quality (1080p, 4K, etc.)
+- 🎵 **Audio Extraction** - Download audio-only as MP3
+- 📋 **Clipboard Integration** - Auto-detect URLs from clipboard
+- 📊 **Real-time Progress** - Live download progress with speed and ETA
 - 🎬 **Video Preview** - See thumbnail and metadata before downloading
-- � **uCustom Save Location** - Choose where to save your downloads
+- 📁 **Custom Save Location** - Choose where to save your downloads
 
-### Professional Features
+### Advanced Features
 - ⚡ **Download Queue** - Batch download multiple videos sequentially
 - 🎮 **GPU Acceleration** - Hardware-accelerated video processing (2-6x faster)
 - 📊 **Format Selection** - MP4, 4K, 1080p, 720p, MP3
@@ -153,13 +163,18 @@ Enabled by default. Disable if you experience issues or only download MP3s.
 ## 🎨 Screenshots
 
 ### Main Interface
-Beautiful gradient UI with video preview and real-time progress.
+![Main Interface](https://via.placeholder.com/800x500/667eea/ffffff?text=Main+Interface+-+Coming+Soon)
+*Beautiful gradient UI with video preview and real-time progress*
 
 ### Download Queue
-Manage multiple downloads with individual controls.
+![Download Queue](https://via.placeholder.com/800x500/764ba2/ffffff?text=Download+Queue+-+Coming+Soon)
+*Manage multiple downloads with individual controls*
 
 ### History Management
-Track all downloads with clickable items and file management.
+![History](https://via.placeholder.com/800x500/667eea/ffffff?text=History+-+Coming+Soon)
+*Track all downloads with clickable items and file management*
+
+> **Note**: Screenshots will be added in the next update. The app is fully functional!
 
 ## 🛠️ Development
 
