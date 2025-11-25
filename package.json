@@ -1,6 +1,6 @@
 {
   "name": "videograbber",
-  "version": "1.0.0",
+  "version": "1.0.12",
   "description": "Cross-platform video downloader using yt-dlp",
   "main": "main.js",
   "scripts": {
