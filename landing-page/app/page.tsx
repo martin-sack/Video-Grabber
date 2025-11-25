@@ -49,8 +49,16 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
+      {/* Header with Logo */}
+      <header className="fixed top-0 left-0 right-0 z-50 px-6 py-4 backdrop-blur-sm bg-black/20">
+        <div className="mx-auto max-w-7xl flex items-center gap-3">
+          <img src="/VG.webp" alt="VideoGrabber" className="h-10 w-10 rounded-lg" />
+          <span className="text-xl font-bold gradient-text">VideoGrabber</span>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden px-6 py-24 sm:py-32">
+      <section className="relative overflow-hidden px-6 py-24 sm:py-32 pt-32">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-violet-900/20 to-fuchsia-900/20" />
         
         <div className="relative mx-auto max-w-7xl">

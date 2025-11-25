@@ -2,9 +2,12 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'VideoGrabber - The Ultimate Video Downloader for Creators',
-  description: 'Download 4K video, audio, and playlists from YouTube, TikTok, and Instagram in one click. Free, open-source, and powerful.',
-  keywords: 'video downloader, youtube downloader, tiktok downloader, 4k downloader, free video downloader',
+  title: 'VideoGrabber - Universal Video Downloader',
+  description: 'Download videos from YouTube, Reddit, Twitter, Vimeo, and 1000+ sites. GPU acceleration, queue management, and beautiful UI. Free and open-source.',
+  keywords: 'video downloader, youtube downloader, reddit downloader, twitter downloader, 4k downloader, free video downloader',
+  icons: {
+    icon: '/VG.webp',
+  },
 }
 
 export default function RootLayout({
