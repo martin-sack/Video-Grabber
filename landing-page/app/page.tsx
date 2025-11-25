@@ -33,7 +33,7 @@ export default function Home() {
             </h1>
             
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-300">
-              Save video and audio from anywhere. YouTube, Instagram, TikTok, and 1000+ sites.
+              Save video and audio from anywhere. YouTube, Vimeo, Twitter, and 1000+ sites.
               <br />
               No ads, no tracking, completely free.
             </p>
@@ -41,7 +41,7 @@ export default function Home() {
             {/* CTA Buttons */}
             <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
               <a
-                href={RELEASES_URL}
+                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber-Setup.exe"
                 className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
               >
                 <Download className="h-5 w-5" />
@@ -49,7 +49,7 @@ export default function Home() {
               </a>
               
               <a
-                href={RELEASES_URL}
+                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber-mac-universal.dmg"
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
                 <Download className="h-5 w-5" />
@@ -57,7 +57,7 @@ export default function Home() {
               </a>
               
               <a
-                href={RELEASES_URL}
+                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber.AppImage"
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
                 <Download className="h-5 w-5" />
@@ -129,7 +129,7 @@ export default function Home() {
               {
                 icon: Download,
                 title: '1000+ Sites',
-                description: 'Download from YouTube, TikTok, Instagram, Facebook, Reddit, and more.'
+                description: 'Download from YouTube, Vimeo, Twitter, Facebook, Reddit, Dailymotion, and more.'
               }
             ].map((feature, index) => (
               <motion.div
@@ -171,7 +171,7 @@ export default function Home() {
               {
                 step: '01',
                 title: 'Paste Link',
-                description: 'Copy any video URL from YouTube, TikTok, Instagram, or 1000+ other sites.'
+                description: 'Copy any video URL from YouTube, Vimeo, Twitter, Facebook, or 1000+ other sites.'
               },
               {
                 step: '02',
