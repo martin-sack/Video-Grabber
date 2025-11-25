@@ -1,17 +1,51 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Download, Zap, Shield, Video, List, Cpu } from 'lucide-react'
+import { Download, Zap, Shield, Video, List, Cpu, Loader2 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 
 const GITHUB_REPO = 'https://github.com/martin-sack/Video-Grabber'
 const RELEASES_URL = `${GITHUB_REPO}/releases/latest`
+const API_URL = 'https://api.github.com/repos/martin-sack/Video-Grabber/releases/latest'
+
+interface DownloadLinks {
+  windows?: string
+  mac?: string
+  linux?: string
+}
 
 export default function Home() {
+  const [downloadLinks, setDownloadLinks] = useState<DownloadLinks>({})
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetch(API_URL)
+      .then(res => res.json())
+      .then(data => {
+        const links: DownloadLinks = {}
+        data.assets?.forEach((asset: any) => {
+          if (asset.name.endsWith('.exe')) {
+            links.windows = asset.browser_download_url
+          } else if (asset.name.endsWith('.dmg')) {
+            links.mac = asset.browser_download_url
+          } else if (asset.name.endsWith('.AppImage')) {
+            links.linux = asset.browser_download_url
+          }
+        })
+        setDownloadLinks(links)
+        setLoading(false)
+      })
+      .catch(() => {
+        setLoading(false)
+      })
+  }, [])
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
+    animate: { opacity: 1, y: 0 }
   }
+  
+  const fadeInTransition = { duration: 0.6 }
 
   return (
     <main className="min-h-screen">
@@ -25,6 +59,7 @@ export default function Home() {
             initial="initial"
             animate="animate"
             variants={fadeIn}
+            transition={fadeInTransition}
           >
             <h1 className="text-5xl font-bold tracking-tight sm:text-7xl mb-6">
               The Universal
@@ -41,26 +76,26 @@ export default function Home() {
             {/* CTA Buttons */}
             <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
               <a
-                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber-Setup.exe"
+                href={downloadLinks.windows || RELEASES_URL}
                 className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
               >
-                <Download className="h-5 w-5" />
+                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
                 Download for Windows
               </a>
               
               <a
-                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber-mac-universal.dmg"
+                href={downloadLinks.mac || RELEASES_URL}
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
-                <Download className="h-5 w-5" />
+                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
                 Download for macOS
               </a>
               
               <a
-                href="https://github.com/martin-sack/Video-Grabber/releases/latest/download/VideoGrabber.AppImage"
+                href={downloadLinks.linux || RELEASES_URL}
                 className="group flex items-center gap-2 rounded-lg glass px-6 py-3 text-base font-semibold text-white hover:bg-white/10 transition-all hover:scale-105"
               >
-                <Download className="h-5 w-5" />
+                {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
                 Download for Linux
               </a>
             </div>
@@ -219,10 +254,10 @@ export default function Home() {
               Join thousands of creators using VideoGrabber
             </p>
             <a
-              href={RELEASES_URL}
+              href={downloadLinks.windows || downloadLinks.mac || downloadLinks.linux || RELEASES_URL}
               className="inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-lg font-semibold text-gray-900 shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
             >
-              <Download className="h-6 w-6" />
+              {loading ? <Loader2 className="h-6 w-6 animate-spin" /> : <Download className="h-6 w-6" />}
               Download Now - It's Free
             </a>
           </motion.div>
