@@ -63,26 +63,42 @@ export default function Home() {
         
         <div className="relative mx-auto max-w-7xl">
           <motion.div
-            className="text-center"
+            className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
             initial="initial"
             animate="animate"
             variants={fadeIn}
             transition={fadeInTransition}
           >
-            <h1 className="text-5xl font-bold tracking-tight sm:text-7xl mb-6">
-              The Universal
-              <br />
-              <span className="gradient-text">Video Downloader</span>
-            </h1>
-            
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-300">
-              Save video and audio from anywhere. YouTube, Vimeo, Twitter, and 1000+ sites.
-              <br />
-              No ads, no tracking, completely free.
-            </p>
+            {/* Large Icon */}
+            <motion.div
+              className="flex-shrink-0"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            >
+              <img 
+                src="/VG.webp" 
+                alt="VideoGrabber" 
+                className="w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 rounded-3xl shadow-2xl"
+              />
+            </motion.div>
 
-            {/* CTA Buttons */}
-            <div className="mt-10 flex items-center justify-center gap-4 flex-wrap">
+            {/* Text Content */}
+            <div className="flex-1 text-center lg:text-left">
+              <h1 className="text-5xl font-bold tracking-tight sm:text-7xl mb-6">
+                The Universal
+                <br />
+                <span className="gradient-text">Video Downloader</span>
+              </h1>
+              
+              <p className="mt-6 max-w-2xl text-lg leading-8 text-gray-300 lg:mx-0 mx-auto">
+                Save video and audio from anywhere. YouTube, Vimeo, Twitter, and 1000+ sites.
+                <br />
+                No ads, no tracking, completely free.
+              </p>
+
+              {/* CTA Buttons */}
+              <div className="mt-10 flex items-center justify-center lg:justify-start gap-4 flex-wrap">
               <a
                 href={downloadLinks.windows || RELEASES_URL}
                 className="group flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-base font-semibold text-gray-900 shadow-lg hover:bg-gray-100 transition-all hover:scale-105"
@@ -106,9 +122,18 @@ export default function Home() {
                 {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : <Download className="h-5 w-5" />}
                 Download for Linux
               </a>
+              </div>
             </div>
+          </motion.div>
 
-            {/* Screenshot */}
+          {/* Screenshot */}
+          <motion.div
+            className="mt-24"
+            initial="initial"
+            animate="animate"
+            variants={fadeIn}
+            transition={fadeInTransition}
+          >
             <motion.div
               className="mt-16 glass rounded-2xl p-2"
               initial={{ opacity: 0, scale: 0.95 }}
